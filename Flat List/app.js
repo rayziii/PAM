@@ -1,59 +1,69 @@
-// STYLE
+// STYLE 
 
 import { StyleSheet, StatusBar } from 'react-native';
 
 export const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      marginTop: StatusBar.currentHeight || 0,
-      backgroundColor: '#fca0a0'
-    },
-  
-    item: {
-      backgroundColor: '#ffffff',
-      width: 300,
-      height: 100,
-      padding: 15,
-      marginVertical: 8,
-      marginHorizontal: 16,
-      marginTop: 25,
-      borderRadius: 20,
-      alignSelf: 'center',
-    },
-  
-    img: {
-      width: 80,
-      height: 80,
-      borderRadius: 100,
-      bottom: 5,
-    },
-  
-    title: {
-      fontSize: 20,
-      marginLeft: 100,
-      bottom: 90,
-      fontWeight: 800,
-      color: '#814545',
-    },
-  
-    textos: {
-      fontSize: 15,
-      marginLeft: 100,
-      bottom: 90,
-      fontWeight: 600,
-    }
-  
-  });
+  container: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+    backgroundColor: '#cbcbcb'
+  },
 
-//  APP
+  item: {
+    backgroundColor: '#ffffff',
+    height: 100,
+    padding: 15,
+    marginVertical: 8,
+    marginHorizontal: 16,
+    borderRadius: 20,
+  },
 
+  img: {
+    width: 80,
+    height: 80,
+    borderRadius: 100,
+    bottom: 5,
+  },
+
+  img2: {
+    width: 20,
+    height: 10,
+    position: 'absolute',
+    top: 63,
+    left: 110,
+    zIndex: 1,
+  },
+
+  title: {
+    fontSize: 25,
+    marginLeft: 100,
+    bottom: 80,
+  },
+
+  mensagem: {
+    fontSize: 15,
+    left: 120,
+    bottom: 70,
+    color: '#727171',
+  },
+
+   horario: {
+    fontSize: 15,
+    left: 300,
+    bottom: 130,
+    color: '#727171',
+  }
+
+});
+
+// APP 
 
 import {View, FlatList, Image, Text} from 'react-native';
 
 import { styles } from './components/styles.js';
 import { DATA } from './components/DATA.js';
 
-const Item = ({imagem, title, valor, cadastro, quantidade}) => (
+const Item = ({imagem, title, mensagem, visto, horario}) => (
   <View style={styles.item}>
 
     <Image 
@@ -61,77 +71,86 @@ const Item = ({imagem, title, valor, cadastro, quantidade}) => (
     style={styles.img}
     />
 
+    <Image 
+    source = {visto}
+    style = {styles.img2}
+    />
+
     <Text style={styles.title}>{title}</Text>
-    <Text style={styles.textos}>{valor}</Text>
-    <Text style={styles.textos}>{cadastro}</Text>
-    <Text style={styles.textos}>{quantidade}</Text>
+
+    <Text style={styles.mensagem}>{mensagem}</Text>
+
+    <Text style={styles.horario}>{horario}</Text>
 
   </View>
 );
 
 export default function App(){  
-return(
-  <View style={styles.container}>
-    <FlatList
-      data={DATA}
-
-      renderItem={({item}) => <Item 
-
-        title={item.title} 
-        imagem={item.imagem} 
-        valor={item.valor}
-        cadastro={item.cadastro}  
-        quantidade={item.quantidade}
-
-      />}
-
-      keyExtractor={item => item.id}
-    />
-  </View>
-  )  
-};
+  return(
+    <View style={styles.container}>
+      <FlatList
+        data={DATA}
+  
+        renderItem={({item}) => <Item 
+  
+          title={item.title} 
+          imagem={item.imagem} 
+          mensagem={item.mensagem}
+          horario={item.horario}  
+          visto={item.visto}
+  
+        />}
+  
+        keyExtractor={item => item.id}
+      />
+    </View>
+    )  
+  };
 
 // DATA
 
 export const DATA = [
   {
     id: '1',
-    imagem: require('../assets/batom.png'),
-    title: 'Batom Vermelho',
-    valor: 'R$ 25,00',
-    cadastro: '14/02/2025',
-    quantidade: '53 unidades'
+    imagem: require('../assets/pipa.jpg'),
+    title: 'Pipa',
+    mensagem: 'to com fome 🙄',
+    visto: require('../assets/visto.png'),
+    horario: '12:49'
   },
   {
     id: '2',
-    imagem: require('../assets/base.png'),
-    title: 'Base Líquida',
-    valor: 'R$ 15,00',
-    cadastro: '27/01/2025',
-    quantidade: '96 unidades'
+    imagem: require('../assets/mofo.jpg'),
+    title: 'Mofo',
+    mensagem: 'abre a porta pra mim 😉',
+    visto: require('../assets/naovisto.png'),
+    horario: '05:32'
   },
   {
     id: '3',
-    imagem: require('../assets/blush.png'),
-    title: 'Blush Compacto',
-    valor: 'R$ 20,00',
-    cadastro: '25/06/2025',
-    quantidade: '32 unidades'
+    imagem: require('../assets/picuinha.jpg'),
+    title: 'Pisquila',
+    mensagem: 'não deixa o mofo entrar 😡',
+    visto: require('../assets/visto.png'),
+    horario: '05:35'
   },
   {
     id: '4',
-    imagem: require('../assets/rimel.png'),
-    title: 'Rímel',
-    valor: 'R$ 10,00',
-    cadastro: '13/09/2025',
-    quantidade: '67 unidades'
+    imagem: require('../assets/foia.jpg'),
+    title: 'Foia',
+    mensagem: 'nao quero tomar remedio 🥺',
+    visto: require('../assets/visto.png'),
+    horario: '07:21'
   },
   {
     id: '5',
-    imagem: require('../assets/compacto.png'),
-    title: 'Pó Compacto',
-    valor: 'R$ 12,00',
-    cadastro: '27/09/2025',
-    quantidade: '78 unidades'
+    imagem: require('../assets/neneca.jpg'),
+    title: 'Neneca',
+    mensagem: 'levei outra lagartixa pra dentro 😘',
+    visto: require('../assets/naovisto.png'),
+    horario: '18:50'
   },
 ];
+
+
+
